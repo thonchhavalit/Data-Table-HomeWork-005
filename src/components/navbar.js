@@ -16,7 +16,7 @@ const Navbar = () => {
                     <a className={router.pathname == "/" ? "nav-link active" : "nav-link"} aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a className={router.pathname == "/about" ? "nav-link active" : "nav-link"} aria-current="page" href="/about">About</a>
+                    <a className={router.pathname == "/about" ? "nav-link active" : "nav-link"} aria-current="page" href="/datatable">DataTable</a>
                     </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
