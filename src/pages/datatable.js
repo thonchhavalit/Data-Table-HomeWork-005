@@ -46,18 +46,60 @@ function Datatable() {
         title: item.title,
         price: item.price,
         category: item.category.name,
-        images: <img src={item.images} style={{ height: '10rem', width: '10rem' }}></img>,
+        images: <img src={item.images} width={100} height={90} style={{borderRadius: '20px' ,margin:'10px'}}/>,
+
         action: <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-outline-warning me-md-2" type="button">Edit</button>
-            <button class="btn btn-outline-danger" type="button">Delete</button>
+            <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Edit
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are sure you want to edit this?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <button class="btn btn-outline-warning me-md-2" type="button">Edit</button> */}
+
+            {/* <button class="btn btn-outline-danger" type="button">Delete</button> */}
+
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Delete
+            </button>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     }));
     const [record, setRecord] = useState(data);
     function handlefilter(event) {
-        const newData = record.filter(rows => {
-            return rows.title.toLoweCase().includes(event.target.value.toLoweCase())
-        })
+        const newData = record.filter(rows => rows.title.toLowerCase().includes(event.target.toLowerCase()));
         setRecord(newData)
     }
 
@@ -75,7 +117,8 @@ function Datatable() {
                 </nav>
                 <h1> DataTable</h1>
                 <DataTable
-                    columns={columns} data={rows}
+                    columns={columns}
+                    data={rows}
                     pagination
                     fixedHeader
                 />
